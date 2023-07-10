@@ -1,0 +1,4 @@
+builder: qmake
+kill: ndefeditor
+build_args: CONFIG+=UBUNTU_TOUCH
+skip_review: true

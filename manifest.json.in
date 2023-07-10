@@ -1,0 +1,15 @@
+{
+    \"name\": \"ndefeditor.lduboeuf\",
+    \"description\": \"NFC Demo\",
+    \"architecture\": \"$${CLICK_ARCH}\",
+    \"title\": \"nfc ndefeditor\",
+    \"hooks\": {
+        \"ndefeditor\": {
+            \"apparmor\": \"ndefeditor.apparmor\",
+            \"desktop\":  \"ndefeditor.desktop\"
+        }
+    },
+    \"version\": \"0.1\",
+    \"maintainer\": \"lionel <pikatchu@tartuff.com>\",
+    \"framework\" : \"$${CLICK_FRAMEWORK}\"
+}

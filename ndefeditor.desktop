@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=NFC editor
+Comment=NFC Demo
+Exec=ndefeditor
+Icon=icons/ndefeditor.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+Keywords=nfc;tag;
