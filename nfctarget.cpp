@@ -13,12 +13,11 @@ NfcTarget::NfcTarget(QNearFieldTarget *target, QObject *parent) : QObject(parent
     connect(target, &QNearFieldTarget::error, this, &NfcTarget::error);
 }
 
+
 bool NfcTarget::readNdefMessages()
 {
     if (m_target.isNull())
         return false;
-
-    qDebug() << "readNdefMessages";
 
     auto req = m_target->readNdefMessages();
     qDebug() << "readNdefMessages" << req.isValid();

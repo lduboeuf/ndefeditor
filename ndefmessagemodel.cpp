@@ -41,8 +41,6 @@ static QString getText(const QNdefRecord &record)
 
 QVariant NdefMessageModel::data(const QModelIndex &index, int role) const
 {
-    qDebug() << "kikou data" << role;
-
     if (!index.isValid())
         return {};
 
@@ -50,8 +48,6 @@ QVariant NdefMessageModel::data(const QModelIndex &index, int role) const
         return {};
 
     const auto &record = m_message.at(index.row());
-
-    qDebug() << "kikou data" << role << record.payload();
 
     switch (role) {
     case RecordTypeRole:
@@ -74,7 +70,6 @@ QHash<int, QByteArray> NdefMessageModel::roleNames() const
 bool NdefMessageModel::removeRows(int row, int count, const QModelIndex &parent)
 {
 
-    qDebug() << "removeRows" << m_message.size();
     if (parent.isValid())
         return false;
     if (row < 0 || count <= 0)
@@ -84,11 +79,9 @@ bool NdefMessageModel::removeRows(int row, int count, const QModelIndex &parent)
 
     beginRemoveRows(parent, row, row + count - 1);
     for (int i=0; i<count; i++) {
-        qDebug() << "remove" << row;
         m_message.removeAt(row);
     }
 
-    //m_message.erase(m_message.begin() + row -1, m_message.begin() + count-1);
     endRemoveRows();
     Q_EMIT messageChanged();
 
