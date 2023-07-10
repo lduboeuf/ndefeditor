@@ -14,7 +14,7 @@ NfcManager::NfcManager(QObject *parent) : QObject(parent)
 
     connect(m_manager, &QNearFieldManager::targetDetected, this, [this](QNearFieldTarget *target) {
         auto jsTarget = new NfcTarget(target);
-        qDebug() << "kikou targetDetected ";
+        qDebug() << "targetDetected ";
         QQmlEngine::setObjectOwnership(jsTarget, QQmlEngine::JavaScriptOwnership);
         Q_EMIT targetDetected(jsTarget);
     });
@@ -22,7 +22,6 @@ NfcManager::NfcManager(QObject *parent) : QObject(parent)
 
 void NfcManager::startTargetDetection(int mode)
 {
-    //m_manager->setTargetAccessModes(TargetAccessModes::::NdefAccess);
     if (mode == 0) {
         m_manager->setTargetAccessModes(QNearFieldManager::NdefReadTargetAccess);
     } else {

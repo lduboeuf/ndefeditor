@@ -117,7 +117,6 @@ ApplicationWindow {
 
                             delegate: NdefRecordDelegate {
                                 Layout.fillWidth: true
-                                    Component.onCompleted: console.log('record', model.recordText, model.recordType)
 
                                 onDeleteClicked: {
                                     messageModel.removeRow(index)
@@ -164,7 +163,7 @@ ApplicationWindow {
         onRequestCompleted: {
             communicationOverlay.close()
             window.targetDetectedAction = MainWindow.NoAction
-            releaseTarget()
+            targetConnections.releaseTarget()
         }
 
         onError: {
@@ -172,18 +171,19 @@ ApplicationWindow {
             errorNotification.errorMessage = window.describeError(code)
             errorNotification.open()
             window.targetDetectedAction = MainWindow.NoAction
-            releaseTarget()
+            targetConnections.releaseTarget()
         }
 
         function releaseTarget() {
-            if (target) target.destroy()
+            if (target) {
+                target.destroy()
+                target = null // to avoid crash
+            }
         }
     }
 
     function handleTargetDetected(target) {
-        console.log('handleTargetDetected');
         targetConnections.releaseTarget()
-
         let ok = true
 
         if (targetDetectedAction === MainWindow.ReadMessage) {
@@ -197,7 +197,7 @@ ApplicationWindow {
             errorNotification.errorMessage = qsTr("NDEF write error")
             ok = target.writeNdefMessage(messageModel.message)
         } else {
-            target.destroy()
+             if (target) target.destroy()
             return
         }
 
@@ -263,12 +263,7 @@ ApplicationWindow {
             }
         }
 
-        onClosed: {
-            console.log('kikou onClosed')
-            nfcManager.stopTargetDetection()
-        }
-
-        //onClosed: nfcManager.stopTargetDetection()
+        onClosed: nfcManager.stopTargetDetection()
     }
 
     Dialog {
