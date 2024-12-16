@@ -168,7 +168,7 @@ ApplicationWindow {
 
         onError: {
             communicationOverlay.close()
-            errorNotification.errorMessage = window.describeError(code)
+            errorNotification.errorMessage = window.describeError(error)
             errorNotification.open()
             window.targetDetectedAction = MainWindow.NoAction
             targetConnections.releaseTarget()
