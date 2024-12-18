@@ -9,7 +9,7 @@
             \"desktop\":  \"ndefeditor.desktop\"
         }
     },
-    \"version\": \"0.2\",
+    \"version\": \"0.3\",
     \"maintainer\": \"lionel <pikatchu@tartuff.com>\",
     \"framework\" : \"$${CLICK_FRAMEWORK}\"
 }

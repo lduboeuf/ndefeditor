@@ -273,6 +273,8 @@ ApplicationWindow {
         standardButtons: Dialog.Close
         title: qsTr("Error")
 
+        anchors.centerIn: parent
+
         ColumnLayout {
 
             Label {
